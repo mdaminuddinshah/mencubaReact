@@ -1,34 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import Cards from './components/Cards';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [test, setTest] = useState(false)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Cards 
+        id={1}
+        title="Hello"
+        description="Test this out"
+        checked={test}
+        toggle={(event) => {
+          // why event.target.checked ??
+          // for type number, string, we use target.value, bcs user insert the value number or string
+          // but for checkbox, user click or not, so it either true or false
+          // so here the checked props is variable to useState which is false
+          // so the target default is false
+          setTest(event.target.checked)
+        }}
+      />
+    </div>
   )
 }
 
