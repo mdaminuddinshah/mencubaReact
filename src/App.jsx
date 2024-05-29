@@ -4,7 +4,8 @@ import NewTodo from './components/NewTodo';
 
 
 function App() {
-  const [test, setTest] = useState(false)
+  const [test, setTest] = useState(false);
+
 
   const mockData = [
     { 
@@ -21,9 +22,15 @@ function App() {
     },
   ]
 
+  const addTodo = ({title,description, gelak}) => {
+    console.log({title, description, gelak})
+    
+  }
+
   return (
     <div>
-      <NewTodo />
+
+      <NewTodo addNewTodo={addTodo}/>
 
       {
         mockData.map((todos) => {
