@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import {useState} from "react";
 
 function NewTodo(props) {
 
@@ -45,6 +46,8 @@ function NewTodo(props) {
     event.target.reset();
   }
 
+  const [title, setTitle] = useState("");
+
   return (
     <div>
         <form onSubmit={handleChange} style={{display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "1rem"}}>
@@ -52,7 +55,9 @@ function NewTodo(props) {
            <fieldset>
             
                 <label htmlFor="titless">Title: </label>
-                <input type="text" id="titlez" name="title"></input>
+                
+                {/* nak buat state validation */}
+                <input type="text" id="titlez" name="title" onChange={(event) => { setTitle(event.target.value)}}></input>
            </fieldset>
                 
            <fieldset>
@@ -60,8 +65,14 @@ function NewTodo(props) {
                 <input type="text" id="descriptionz" name="descriptions"></input>
            </fieldset>
                 
-            
-            <button type="submit">Submit</button>
+            {/* title is empty now */}
+            {/* so if title empty, disabled is false */}
+            {/* so if title has value, disabled is true */}
+
+            {/* use ! logical not operator */}
+            {/* ! to let if input is empty, button disabled */}
+            {/* trim() is to make sure empty space not count as value */}
+            <button type="submit" disabled={!title.trim()}>Submit</button>
         </form>
     </div>
   )
