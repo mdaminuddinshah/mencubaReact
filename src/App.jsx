@@ -7,12 +7,16 @@ function App() {
 
   const [todos, setTodos] = useState([]);
 
+  const generateRandomHex = () => {
+    return (Math.floor(Math.random() * 12345).toString(16))
+  };
+
   const addTodo = ({title,description, gelak}) => {
     console.log({title, description, gelak})
 
     // kita buat object kita
     const newTodo = {
-      id: Math.random().toString(),
+      id: generateRandomHex(),
       title, 
       description,
       checked: false
@@ -24,6 +28,33 @@ function App() {
     setTodos((previous) => {
       return [newTodo, ...previous]
     })
+
+  }
+
+  const handleCheck = (event) => {
+
+    const targetId = event.target.id;
+    const targetChecked = event.target.checked;
+
+    setTodos((previous) => {
+      const updatedTodo = previous.map((todo) => {
+        // if(targetId != todo.id){
+        //   return console.log(todo)
+        // }
+
+        const updatedItem = {
+          ...todo,
+          checked: targetChecked
+        }
+
+        return updatedItem;
+
+      })
+
+      return updatedTodo;
+    })
+    console.log(targetId);
+    console.log(targetChecked);
 
   }
 
@@ -43,6 +74,7 @@ function App() {
                 title={todos.title}
                 description={todos.description}
                 checked={todos.checked}
+                toggle={handleCheck}
         //         toggle={(event) => {
         //           // why event.target.checked ??
         //           // for type number, string, we use target.value, bcs user insert the value number or string
