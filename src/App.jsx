@@ -33,7 +33,7 @@ function App() {
 
   const handleCheck = (event) => {
 
-    const targetId = event.target.id;
+    // kita buat event.target.checked utk kita tukar checked ni dari false ke true dan sebaliknya
     const targetChecked = event.target.checked;
 
     setTodos((previous) => {
@@ -43,7 +43,21 @@ function App() {
         // }
 
         const updatedItem = {
+
+          // todo ni mewakili semua object yg sebelum ni
+          // so kita akan update semua todo
+
+          // macam mana todo ni boleh access object ?
+          // sebab todo adalah map dari previous dari setTodos
           ...todo,
+
+          // semua ni bermula dari checked: false, line 22
+          // kenapa checked: targetChecked ??
+          // sekarang atau mula2, checked: false
+          // bila kita trigger input, ofc akan trigger onChange, onChange akan trigger toggle
+          // toggle akan trigger handleCheck, handleCheck akan auto tukar false ke true,
+
+          // so nanti, bila kita tekan lagi, dia akan ke false semula
           checked: targetChecked
         }
 
@@ -53,8 +67,6 @@ function App() {
 
       return updatedTodo;
     })
-    console.log(targetId);
-    console.log(targetChecked);
 
   }
 
