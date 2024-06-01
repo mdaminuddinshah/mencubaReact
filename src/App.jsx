@@ -35,12 +35,13 @@ function App() {
 
     // kita buat event.target.checked utk kita tukar checked ni dari false ke true dan sebaliknya
     const targetChecked = event.target.checked;
+    const targetId = event.target.id;
 
     setTodos((previous) => {
       const updatedTodo = previous.map((todo) => {
-        // if(targetId != todo.id){
-        //   return console.log(todo)
-        // }
+        if(targetId != todo.id){
+          return console.log(todo)
+        }
 
         const updatedItem = {
 
